@@ -6,6 +6,30 @@
     background-color: #FAFAFA;
     height: 300px;
     margin: 0 100px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline: 50px;
+}
+
+.photograph-header img {
+    width: 200px;
+}
+
+.photograph-header h1 {
+    color: #D3573C;
+    font-weight: 400;
+    font-size: 64px;
+    margin: 0;
+}
+
+.photograph-header .place {
+    font-size: 24px;
+}
+
+.photograph-header .tagline {
+    font-size: 18px;
+    color: #525252;
 }
 
 .contact_button {
