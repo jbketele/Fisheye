@@ -16,7 +16,8 @@
     width: 200px;
 }
 
-.photograph-header h1 {
+.photograph-header h1,
+.photograph-header p {
     color: #D3573C;
     font-weight: 400;
     font-size: 64px;
@@ -43,6 +44,39 @@
     background-color: #901C1C;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.media-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 90px;
+    row-gap: 60px;
+}
+
+.media-gallery img,
+.media-gallery video {
+    width: 350px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.media-container p {
+    margin: 0;
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.title-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+i {
+    color: #901C1C;
+    font-size: 24px;
 }
 
 .modal {
