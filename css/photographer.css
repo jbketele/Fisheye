@@ -46,6 +46,10 @@
     cursor: pointer;
 }
 
+main {
+    position: relative;
+}
+
 .media-gallery {
     display: flex;
     flex-wrap: wrap;
@@ -72,11 +76,29 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-size: 24px;
+    color: #901C1C;
 }
 
-i {
-    color: #901C1C;
-    font-size: 24px;
+.like-count {
+    margin-right: 5px;
+}
+
+.footer {
+    background-color: #DB8876;
+    width: 376px;
+    height: 49px;
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    right: 60px;
+    border-radius: 10px 10px 0 0;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.total-likes {
+    margin-right: 10px;
 }
 
 .modal {

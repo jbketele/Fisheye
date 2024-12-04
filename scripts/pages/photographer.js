@@ -29,8 +29,10 @@ fetch("data/photographers.json")
         console.error('Erreur :', error);
     });
 
+const main = document.querySelector('main');
+
 //Afficher les informations du photographe
-function displayPhotographerData({ name, city, country, tagline, portrait }) {
+function displayPhotographerData({ name, city, country, tagline, portrait, price }) {
     const header = document.querySelector(".photograph-header");
     const button = document.querySelector(".contact_button");
 
@@ -66,10 +68,13 @@ function displayPhotographerData({ name, city, country, tagline, portrait }) {
     circle.classList.add('circle-image');
     img.classList.add(`photographer-image-${id}`);
 
-    getImagesPhotographer(name);
+    console.log(price);
+
+    getImagesPhotographer(name, price);
+    displayFooter(price);
 }
 
-function getImagesPhotographer(photographerName) {
+function getImagesPhotographer(photographerName, price) {
     const firstName = photographerName.split(' ')[0]; // Extraire le prénom
     console.log("Nom complet :", photographerName);
     console.log("Prénom utilisé pour les médias :", firstName);
@@ -85,7 +90,8 @@ function getImagesPhotographer(photographerName) {
             const mediaPaths = mediaData[firstName]; // Obtenir les médias du prénom
             if (mediaPaths && mediaPaths.length > 0) {
                 console.log(`Médias trouvés pour ${firstName}:`, mediaPaths);
-                displayMediaGallery(mediaPaths, photographerName);
+                displayMediaGallery(mediaPaths, photographerName, price);
+                console.log(price);
             } else {
                 console.warn(`Aucun média trouvé pour ${firstName}.`);
             }
@@ -95,9 +101,12 @@ function getImagesPhotographer(photographerName) {
         });
 }
 
-function displayMediaGallery(mediaPaths, photographerName) {
+
+
+function displayMediaGallery(mediaPaths, photographerName, price) {
     const gallery = document.createElement('div');
     gallery.classList.add('media-gallery');
+    console.log(price);
 
     mediaPaths.forEach(mediaPath => {
         const fileType = mediaPath.split('.').pop().toLowerCase(); // Type du fichier
@@ -131,17 +140,39 @@ function displayMediaGallery(mediaPaths, photographerName) {
             titleElement.textContent = title;
             titleBox.appendChild(titleElement);
 
+            const likeSection = document.createElement('span');
+            titleBox.appendChild(likeSection);
+
             const heartIcon = document.createElement('i');
             heartIcon.classList.add('fas', 'fa-heart');
-            titleBox.appendChild(heartIcon);
+            likeSection.appendChild(heartIcon);
 
+            const likeCount = document.createElement('span');
+            likeCount.classList.add('like-count');
+            likeCount.textContent = 0;
+
+            let likes = 0;
+            heartIcon.addEventListener('click', () => {
+                likes = likes === 0 ? 1 : 0;
+                likeCount.textContent = likes;
+                heartIcon.classList.toggle('liked');
+
+                updateTotalLikes();
+            })
+
+            likeSection.prepend(likeCount);
             gallery.appendChild(mediaContainer);
         }
+        console.log(price);
     });
 
     // Ajouter la galerie sous les informations du photographe
-    const main = document.querySelector('main');
+
     main.appendChild(gallery);
+
+    if (!totalLikesElement) {
+        totalLikesElement = displayFooter(price)
+    }
 
     console.log("Galerie affichée avec succès.");
 }
@@ -161,4 +192,61 @@ function titleFileName(fileName) {
     };
 
     return titles[fileName] || fileName;
+}
+
+let totalLikesElement = null;
+let totalLikes = 0;
+
+function displayFooter(price) {
+    const footer = document.createElement('div');
+    footer.classList.add('footer');
+
+    const likesContainer = document.createElement('div');
+    likesContainer.classList.add('likes-container');
+
+    const totalLikesElement = document.createElement('span');
+    totalLikesElement.classList.add('total-likes');
+    totalLikesElement.textContent = '0';
+    likesContainer.appendChild(totalLikesElement);
+
+    const heartIcon = document.createElement('i');
+    heartIcon.classList.add('fas', 'fa-heart');
+    likesContainer.appendChild(heartIcon);
+
+    footer.appendChild(likesContainer)
+
+    const priceElement = document.createElement('span');
+    priceElement.classList.add('photographer-price');
+    priceElement.textContent = `${price}€/jour`;
+    footer.appendChild(priceElement);
+
+    main.appendChild(footer);
+    console.log(price);
+    return totalLikesElement;
+}
+
+function updateTotalLikes() {
+    const likeCounts = document.querySelectorAll('.like-count');
+    let total = 0;
+    likeCounts.forEach(likeElement => {
+        total += parseInt(likeElement.textContent, 10);
+    })
+
+    if (totalLikesElement) {
+        totalLikesElement.textContent = total;
+        console.log(total);
+    } else {
+        console.error("Élément non trouvé");
+    }
+    totalLikes = total;
+}
+
+function handleLikeClick(heartIcon, likeCountElement) {
+    let likes = parseInt(likeCountElement.textContent, 10);
+    likes = likes === 0 ? 1 : 0;
+    likeCountElement.textContent = likes;
+
+    heartIcon.classList.toggle('liked');
+
+    updateTotalLikes();
 }
