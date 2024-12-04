@@ -68,15 +68,18 @@ function displayPhotographerData({ name, city, country, tagline, portrait, price
     circle.classList.add('circle-image');
     img.classList.add(`photographer-image-${id}`);
 
-    console.log(price);
+    button.addEventListener('click', () => {
+        console.log("Clic sur le bouton contact pour " + name); // Vérification avant d'appeler displayModal
+        displayModal(name);
+    });
 
     getImagesPhotographer(name, price);
     displayFooter(price);
 }
 
-function getImagesPhotographer(photographerName, price) {
-    const firstName = photographerName.split(' ')[0]; // Extraire le prénom
-    console.log("Nom complet :", photographerName);
+function getImagesPhotographer(name, price) {
+    const firstName = name.split(' ')[0]; // Extraire le prénom
+    console.log("Nom complet :", name);
     console.log("Prénom utilisé pour les médias :", firstName);
 
     fetch("data/images-photographer.json")
@@ -90,8 +93,7 @@ function getImagesPhotographer(photographerName, price) {
             const mediaPaths = mediaData[firstName]; // Obtenir les médias du prénom
             if (mediaPaths && mediaPaths.length > 0) {
                 console.log(`Médias trouvés pour ${firstName}:`, mediaPaths);
-                displayMediaGallery(mediaPaths, photographerName, price);
-                console.log(price);
+                displayMediaGallery(mediaPaths, name, price);
             } else {
                 console.warn(`Aucun média trouvé pour ${firstName}.`);
             }
@@ -103,10 +105,9 @@ function getImagesPhotographer(photographerName, price) {
 
 
 
-function displayMediaGallery(mediaPaths, photographerName, price) {
+function displayMediaGallery(mediaPaths, name, price) {
     const gallery = document.createElement('div');
     gallery.classList.add('media-gallery');
-    console.log(price);
 
     mediaPaths.forEach(mediaPath => {
         const fileType = mediaPath.split('.').pop().toLowerCase(); // Type du fichier
@@ -118,7 +119,7 @@ function displayMediaGallery(mediaPaths, photographerName, price) {
         if (fileType === 'jpg' || fileType === 'png') {
             mediaElement = document.createElement('img');
             mediaElement.setAttribute('src', mediaPath);
-            mediaElement.setAttribute('alt', `Photo de ${photographerName}`);
+            mediaElement.setAttribute('alt', `Photo de ${name}`);
         } else if (fileType === 'mp4') {
             mediaElement = document.createElement('video');
             mediaElement.setAttribute('controls', 'true');
@@ -163,7 +164,6 @@ function displayMediaGallery(mediaPaths, photographerName, price) {
             likeSection.prepend(likeCount);
             gallery.appendChild(mediaContainer);
         }
-        console.log(price);
     });
 
     // Ajouter la galerie sous les informations du photographe
@@ -221,7 +221,6 @@ function displayFooter(price) {
     footer.appendChild(priceElement);
 
     main.appendChild(footer);
-    console.log(price);
     return totalLikesElement;
 }
 
@@ -234,7 +233,6 @@ function updateTotalLikes() {
 
     if (totalLikesElement) {
         totalLikesElement.textContent = total;
-        console.log(total);
     } else {
         console.error("Élément non trouvé");
     }
@@ -250,3 +248,37 @@ function handleLikeClick(heartIcon, likeCountElement) {
 
     updateTotalLikes();
 }
+
+function displayModal(name) {
+    console.log("Bonjour");
+    const modal = document.getElementById('contact_modal');
+    modal.style.display = 'block';
+    const header = document.querySelector('header');
+
+
+    if (main) {
+        main.classList.add('dark-overlay');
+    } else {
+        console.error("Élément 'main' non trouvé.");
+    }
+
+    if (header) {
+        header.classList.add('dark-overlay');
+    } else {
+        console.error("Élément 'header' non trouvé.");
+    }
+}
+
+function closeModal() {
+    const modal = document.getElementById('contact_modal');
+    modal.style.display = 'none';
+}
+
+// Fermer le modal en cliquant à l'extérieur de celui-ci
+const modalOverlay = document.getElementById('contact_modal');
+modalOverlay.addEventListener('click', function (event) {
+    // Si l'utilisateur clique à l'extérieur de la modale, la fermer
+    if (event.target === modalOverlay) {
+        closeModal();
+    }
+});

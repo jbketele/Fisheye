@@ -101,6 +101,16 @@ main {
     margin-right: 10px;
 }
 
+#contact_modal {
+    position: absolute;
+    top: 10%;
+    width: 100%;
+}
+
+.dark-overlay {
+    background-color: rgba((0), 0, 0, 0.5);
+}
+
 .modal {
     border-radius: 5px;
     background-color: #DB8876;
@@ -113,16 +123,17 @@ main {
     margin: auto;
 }
 
-.modal header {
+.modal-header {
     justify-content: space-between;
     width: 100%;
+    margin-top: 0;
 }
 
-.modal header img {
+.modal-header img {
     cursor: pointer;
 }
 
-.modal header h2 {
+.modal-header h2 {
     font-size: 64px;
     font-weight: normal;
     text-align: center;
@@ -135,6 +146,10 @@ form {
     align-items: flex-start;
 }
 
+.form-field {
+    margin-bottom: 26px;
+}
+
 form label {
     color: #312E2E;
     font-size: 36px;
@@ -145,7 +160,6 @@ form div {
     flex-direction: column;
     width: 100%;
     align-items: self-start;
-    margin-bottom: 26px;
 }
 
 form input {
@@ -153,4 +167,8 @@ form input {
     height: 68px;
     border: none;
     border-radius: 5px;
+}
+
+.message input {
+    height: 170px;
 }
