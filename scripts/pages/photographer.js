@@ -70,7 +70,7 @@ function displayPhotographerData({ name, city, country, tagline, portrait, price
 
     button.addEventListener('click', () => {
         console.log("Clic sur le bouton contact pour " + name); // Vérification avant d'appeler displayModal
-        displayModal(name);
+        openModal(name);
     });
 
     getImagesPhotographer(name, price);
@@ -249,36 +249,13 @@ function handleLikeClick(heartIcon, likeCountElement) {
     updateTotalLikes();
 }
 
-function displayModal(name) {
-    console.log("Bonjour");
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'block';
-    const header = document.querySelector('header');
-
-
-    if (main) {
-        main.classList.add('dark-overlay');
-    } else {
-        console.error("Élément 'main' non trouvé.");
-    }
-
-    if (header) {
-        header.classList.add('dark-overlay');
-    } else {
-        console.error("Élément 'header' non trouvé.");
-    }
+function openModal(name) {
+    const modal = document.querySelector('dialog');
+    const modalTitle = modal.querySelector('h2');
+    modalTitle.innerHTML = `Contactez-moi<br>${name}`;
+    modal.showModal();
 }
 
 function closeModal() {
-    const modal = document.getElementById('contact_modal');
-    modal.style.display = 'none';
+    dialog.close();
 }
-
-// Fermer le modal en cliquant à l'extérieur de celui-ci
-const modalOverlay = document.getElementById('contact_modal');
-modalOverlay.addEventListener('click', function (event) {
-    // Si l'utilisateur clique à l'extérieur de la modale, la fermer
-    if (event.target === modalOverlay) {
-        closeModal();
-    }
-});

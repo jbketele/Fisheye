@@ -19,11 +19,11 @@
       <button class="contact_button">Contactez-moi</button>
     </div>
   </main>
-  <div id="contact_modal">
+  <dialog id="contact_modal">
     <div class="modal">
       <header class="modal-header">
         <h2>Contactez-moi</h2>
-        <img src="assets/icons/close.svg" onclick="closeModal()" />
+        <button class="close-button" onclick="closeModal()">X</button>
       </header>
       <form>
         <div class="form-field">
@@ -47,7 +47,7 @@
         <button class="contact_button">Envoyer</button>
       </form>
     </div>
-  </div>
+  </dialog>
   <script src="/scripts/pages/photographer.js"></script>
   <script src="/scripts/utils/contactForm.js"></script>
 </body>
