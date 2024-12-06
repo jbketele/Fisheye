@@ -1,14 +1,44 @@
 {
     "Mimi": [
-        "assets/images/Mimi/Animals_Rainbow.jpg",
-        "assets/images/Mimi/Travel_Lonesome.jpg",
-        "assets/images/Mimi/Event_SeasideWedding.jpg",
-        "assets/images/Mimi/Portrait_Background.jpg",
-        "assets/images/Mimi/Event_PintoWedding.jpg",
-        "assets/images/Mimi/Portrait_Wednesday.jpg",
-        "assets/images/Mimi/Event_BenevidesWedding.jpg",
-        "assets/images/Mimi/Portrait_Nora.jpg",
-        "assets/images/Mimi/Travel_HillsideColor.jpg",
-        "assets/images/Mimi/Animals_Wild_Horses_in_the_mountains.mp4"
+        {
+            "path": "assets/images/Mimi/Animals_Rainbow.jpg",
+            "title": "Arc en ciel"
+        },
+        {
+            "path": "assets/images/Mimi/Travel_Lonesome.jpg",
+            "title": "Solitude"
+        },
+        {
+            "path": "assets/images/Mimi/Event_SeasideWedding.jpg",
+            "title": "Mariage à la mer"
+        },
+        {
+            "path": "assets/images/Mimi/Portrait_Background.jpg",
+            "title": "Portrait noir et blanc"
+        },
+        {
+            "path": "assets/images/Mimi/Event_PintoWedding.jpg",
+            "title": "Maraige Pinto"
+        },
+        {
+            "path": "assets/images/Mimi/Portrait_Wednesday.jpg",
+            "title": "Portrait de Mercredi"
+        },
+        {
+            "path": "assets/images/Mimi/Event_BenevidesWedding.jpg",
+            "title": "Mariage Benevides"
+        },
+        {
+            "path": "assets/images/Mimi/Portrait_Nora.jpg",
+            "title": "Portrait de Nora"
+        },
+        {
+            "path": "assets/images/Mimi/Travel_HillsideColor.jpg",
+            "title": "Couleurs"
+        },
+        {
+            "path": "assets/images/Mimi/Animals_Wild_Horses_in_the_mountains.mp4",
+            "title": "Chevaux sauvages"
+        }
     ]
 }

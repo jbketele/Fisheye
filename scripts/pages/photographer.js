@@ -103,28 +103,22 @@ function getImagesPhotographer(name, price) {
         });
 }
 
-
-
 function displayMediaGallery(mediaPaths, name, price) {
     const gallery = document.createElement('div');
     gallery.classList.add('media-gallery');
 
-    mediaPaths.forEach(mediaPath => {
-        const fileType = mediaPath.split('.').pop().toLowerCase(); // Type du fichier
-        let mediaElement;
-        let fileName = mediaPath.split('/').pop().split('.')[0];
-
-        title = titleFileName(fileName);
+    mediaPaths.forEach(({ path, title }) => {
+        const fileType = path.split('.').pop().toLowerCase(); // Type du fichier
 
         if (fileType === 'jpg' || fileType === 'png') {
             mediaElement = document.createElement('img');
-            mediaElement.setAttribute('src', mediaPath);
+            mediaElement.setAttribute('src', path);
             mediaElement.setAttribute('alt', `Photo de ${name}`);
         } else if (fileType === 'mp4') {
             mediaElement = document.createElement('video');
             mediaElement.setAttribute('controls', 'true');
             const source = document.createElement('source');
-            source.setAttribute('src', mediaPath);
+            source.setAttribute('src', path);
             source.setAttribute('type', 'video/mp4');
             mediaElement.appendChild(source);
         }
@@ -163,6 +157,10 @@ function displayMediaGallery(mediaPaths, name, price) {
 
             likeSection.prepend(likeCount);
             gallery.appendChild(mediaContainer);
+
+            mediaElement.addEventListener('click', () => {
+                openLightbox(path, title, mediaPaths);
+            })
         }
     });
 
@@ -177,21 +175,16 @@ function displayMediaGallery(mediaPaths, name, price) {
     console.log("Galerie affichée avec succès.");
 }
 
-function titleFileName(fileName) {
-    const titles = {
-        "Animals_Rainbow": "Arc-en-ciel",
-        "Animals_Wild_Horses_in_the_mountains": "Chevaux sauvages",
-        "Event_BenevidesWedding": "Mariage Benevides",
-        "Event_PintoWedding": "Mariage Pinto",
-        "Event_SeasideWedding": "Mariage à la mer",
-        "Portrait_Background": "Portrait noir et blanc",
-        "Portrait_Nora": "Portrait de Nora",
-        "Portrait_Wednesday": "Portrait de mercredi",
-        "Travel_HillsideColor": "Couleurs",
-        "Travel_Lonesome": "Solitude"
-    };
 
-    return titles[fileName] || fileName;
+function openModal(name) {
+    const modal = document.querySelector('dialog');
+    const modalTitle = modal.querySelector('h2');
+    modalTitle.innerHTML = `Contactez-moi<br>${name}`;
+    modal.showModal();
+}
+
+function closeModal() {
+    dialog.close();
 }
 
 let totalLikesElement = null;
@@ -249,13 +242,129 @@ function handleLikeClick(heartIcon, likeCountElement) {
     updateTotalLikes();
 }
 
-function openModal(name) {
-    const modal = document.querySelector('dialog');
-    const modalTitle = modal.querySelector('h2');
-    modalTitle.innerHTML = `Contactez-moi<br>${name}`;
-    modal.showModal();
+let currentIndex = 0;
+let mediaList = [];
+
+function openLightbox(mediaPath, title, mediaPaths) {
+    mediaList = mediaPaths;
+    currentIndex = mediaPaths.findIndex(media => media.path === mediaPath);
+
+    lightbox = document.createElement('dialog');
+    lightbox.classList.add('lightbox');
+
+    const lightboxContent = document.createElement('div');
+    lightboxContent.classList.add('lightbox-content');
+
+    const closeButton = document.createElement('button');
+    closeButton.classList.add('button-lightbox', 'lightbox-close');
+    closeButton.textContent = 'X';
+    closeButton.addEventListener('click', () => closeLightbox(lightbox));
+
+    const prev = document.createElement('button');
+    prev.textContent = "<";
+    prev.classList.add('button-lightbox', 'prev');
+    prev.addEventListener('click', () => navigateLightbox(-1, lightbox));
+
+    const next = document.createElement('button');
+    next.textContent = ">";
+    next.classList.add('button-lightbox', 'next');
+    next.addEventListener('click', () => navigateLightbox(1, lightbox));
+
+    const mediaContainer = document.createElement('div');
+    mediaContainer.classList.add('lightbox-media');
+
+    const lightboxTitle = document.createElement('p');
+    lightboxTitle.classList.add('lightbox-title');
+
+    lightboxContent.appendChild(prev);
+    lightboxContent.appendChild(mediaContainer);
+    lightboxContent.appendChild(closeButton);
+    lightboxContent.appendChild(next);
+    lightbox.appendChild(lightboxContent);
+    lightbox.appendChild(lightboxTitle);
+
+
+    document.body.appendChild(lightbox);
+
+    const lightboxMedia = lightbox.querySelector('.lightbox-media');
+
+    const fileType = mediaPath.split('.').pop().toLowerCase();
+
+    if (fileType === 'jpg' || fileType === 'png') {
+        const img = document.createElement('img');
+        img.setAttribute('src', mediaPath);
+        img.setAttribute('alt', title);
+        img.classList.add('media-lightbox');
+        lightboxMedia.appendChild(img);
+    } else if (fileType === 'mp4') {
+        const video = document.createElement('video');
+        video.setAttribute('controls', 'true');
+        const source = document.createElement('source');
+        source.setAttribute('src', mediaPath);
+        source.setAttribute('type', 'video/mp4');
+        video.classList.add('media-lightbox');
+        video.appendChild(source);
+        lightboxMedia.appendChild(video);
+    }
+
+    lightboxTitle.textContent = title;
+
+    lightbox.showModal();
+}
+function closeLightbox(lightbox) {
+    if (lightbox && lightbox.close) {
+        lightbox.close();
+        lightbox.remove(); // Supprime l'élément du DOM après fermeture
+    } else {
+        console.error("Impossible de fermer la lightbox : élément invalide ou non trouvé.");
+    }
 }
 
-function closeModal() {
-    dialog.close();
+function navigateLightbox(direction, lightbox, mediaPaths) {
+    currentIndex = (currentIndex + direction + mediaList.length) % mediaList.length;
+    const newMedia = mediaList[currentIndex];
+
+    if (newMedia) {
+        updateLightboxContent(lightbox, newMedia.path);
+    } else {
+        console.error("Média non trouvé");
+    }
+}
+
+function updateLightboxContent(lightbox, mediaPath) {
+    const lightboxMedia = lightbox.querySelector('.lightbox-media');
+    const lightboxTitle = lightbox.querySelector('.lightbox-title');
+
+    // Effacer le contenu précédent
+    lightboxMedia.innerHTML = '';
+
+    // Trouver le média dans la liste pour récupérer le titre
+    const media = mediaList.find(item => item.path === mediaPath);
+
+    if (media) {
+        lightboxTitle.textContent = media.title;
+    } else {
+        lightboxTitle.textContent = '';
+        console.warn("Média introuvable dans la liste.");
+    }
+
+    // Déterminer le type de fichier
+    const fileType = mediaPath.split('.').pop().toLowerCase();
+
+    if (fileType === 'jpg' || fileType === 'png') {
+        const img = document.createElement('img');
+        img.setAttribute('src', mediaPath);
+        img.setAttribute('alt', media.title);
+        img.classList.add('media-lightbox');
+        lightboxMedia.appendChild(img);
+    } else if (fileType === 'mp4') {
+        const video = document.createElement('video');
+        video.setAttribute('controls', 'true');
+        const source = document.createElement('source');
+        source.setAttribute('src', mediaPath);
+        source.setAttribute('type', 'video/mp4');
+        video.classList.add('media-lightbox');
+        video.appendChild(source);
+        lightboxMedia.appendChild(video);
+    }
 }

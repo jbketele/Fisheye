@@ -173,3 +173,47 @@ form input {
 .message input {
     height: 170px;
 }
+
+.lightbox {
+    border: none;
+    width: 75%;
+    padding-inline: 70px;
+}
+
+.lightbox-content {
+    position: relative;
+}
+
+.media-lightbox {
+    width: 100%;
+}
+
+.lightbox-title {
+    color: #901C1C;
+    font-size: 24px;
+}
+
+.button-lightbox {
+    background-color: transparent;
+    color: #901C1C;
+    border: none;
+    outline: none;
+    font-size: 50px;
+    height: min-content;
+    position: absolute;
+}
+
+.lightbox-close {
+    top: 0;
+    right: -55px;
+}
+
+.prev {
+    top: 50%;
+    left: -55px;
+}
+
+.next {
+    top: 50%;
+    right: -55px;
+}
