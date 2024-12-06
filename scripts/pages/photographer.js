@@ -94,6 +94,7 @@ function getImagesPhotographer(name, price) {
             if (mediaPaths && mediaPaths.length > 0) {
                 console.log(`Médias trouvés pour ${firstName}:`, mediaPaths);
                 displayMediaGallery(mediaPaths, name, price);
+                addSortSelector(mediaPaths);
             } else {
                 console.warn(`Aucun média trouvé pour ${firstName}.`);
             }
@@ -173,6 +174,62 @@ function displayMediaGallery(mediaPaths, name, price) {
     }
 
     console.log("Galerie affichée avec succès.");
+}
+
+function addSortSelector(mediaPaths) {
+    // Créer le conteneur pour le tri
+    const sortContainer = document.createElement('div');
+    sortContainer.classList.add('sort-container');
+
+    // Label pour le sélecteur
+    const sortLabel = document.createElement('label');
+    sortLabel.setAttribute('for', 'sort');
+    sortLabel.textContent = 'Trier par : ';
+
+    // Menu déroulant pour le tri
+    const sortSelect = document.createElement('select');
+    sortSelect.setAttribute('id', 'sort');
+    sortSelect.innerHTML = `
+        <option value="popularity">Popularité</option>
+        <option value="date">Date</option>
+        <option value="title">Titre</option>
+    `;
+
+    // Ajouter les éléments au conteneur
+    sortContainer.appendChild(sortLabel);
+    sortContainer.appendChild(sortSelect);
+
+    // Insérer le conteneur avant la galerie
+    const gallerySection = document.querySelector('.media-gallery');
+    if (gallerySection) {
+        gallerySection.parentElement.insertBefore(sortContainer, gallerySection);
+    }
+
+    // Ajouter l'écouteur d'événement pour le tri
+    sortSelect.addEventListener('change', () => {
+        const criterion = sortSelect.value; // Récupérer le critère sélectionné
+        const sortedMedia = sortMedia(mediaPaths, criterion); // Appliquer le tri
+        refreshMediaGallery(sortedMedia); // Réafficher la galerie avec les médias triés
+    });
+}
+
+
+
+function sortMedia(media, criterion) {
+    switch (criterion) {
+        case 'popularity':
+            return media.sort((a, b) => b.likes - a.likes);
+        case 'title':
+            return media.sort((a, b) => a.title.localeCompare(b.title));
+        case 'date':
+            return media;
+    }
+}
+
+function refreshMediaGallery(sortedMedia) {
+    const gallery = document.querySelector('.media-gallery');
+    gallery.innerHTML = ''; // Vider l'ancienne galerie
+    displayMediaGallery(sortedMedia); // Réafficher avec les médias triés
 }
 
 
