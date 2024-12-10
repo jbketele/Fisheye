@@ -64,6 +64,7 @@ function displayPhotographerData({ name, city, country, tagline, portrait, price
     const picture = `assets/photographers/${portrait}`;
     const img = document.createElement('img');
     img.setAttribute("src", picture);
+    img.setAttribute("alt", name);
     circle.appendChild(img);
     circle.classList.add('circle-image');
     img.classList.add(`photographer-image-${id}`);
@@ -326,6 +327,14 @@ function openLightbox(mediaPath, title, mediaPaths) {
     next.textContent = ">";
     next.classList.add('button-lightbox', 'next');
     next.addEventListener('click', () => navigateLightbox(1, lightbox));
+
+    document.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            navigateLightbox(-1, lightbox);  // Flèche gauche
+        } else if (event.key === 'ArrowRight') {
+            navigateLightbox(1, lightbox);   // Flèche droite
+        }
+    });
 
     const mediaContainer = document.createElement('div');
     mediaContainer.classList.add('lightbox-media');
