@@ -132,7 +132,7 @@ class MediaGallery {
     }
 
     createMediaDetails(media) {
-        const { title, likes = 0 } = media
+        const { title } = media
         // Création de la section des détails (titre et likes)
         const mediaDetails = document.createElement('div');
         mediaDetails.classList.add('title-box');
@@ -147,7 +147,7 @@ class MediaGallery {
         likeSection.classList.add('like-section');
 
         const likeCount = document.createElement('span');
-        likeCount.textContent = 0;
+        likeCount.textContent = media.likes || 0;
         likeCount.classList.add('like-count');
 
         const likeButton = document.createElement('i');
@@ -157,8 +157,8 @@ class MediaGallery {
 
         // Gestion du clic sur le bouton like
         likeButton.addEventListener('click', () => {
-            likes = likes === 0 ? 1 : 0;
-            likeCount.textContent = likes;
+            media.likes = media.likes === 0 ? 1 : 0;
+            likeCount.textContent = media.likes;
             this.updateTotalLikes();
         });
 
@@ -183,6 +183,7 @@ class MediaGallery {
         const sortSelect = document.createElement('select');
         sortSelect.setAttribute('id', 'sort');
         sortSelect.innerHTML = `
+                <option value="">...</option>
                 <option value="popularity">Popularité</option>
                 <option value="date">Date</option>
                 <option value="title">Titre</option>
@@ -216,7 +217,7 @@ class MediaGallery {
     // Mise à jour du total des likes dans le footer
     updateTotalLikes() {
         const totalLikes = this.sortedMediaList.reduce((acc, media) => acc + (media.likes || 0), 0);
-        this.updateFooter(total);
+        this.updateFooter(totalLikes);
     }
 
     updateFooter(totalLikes) {
