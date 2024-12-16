@@ -40,5 +40,215 @@
             "path": "assets/images/Mimi/Animals_Wild_Horses_in_the_mountains.mp4",
             "title": "Chevaux sauvages"
         }
+    ],
+    "Ellie Rose": [
+        {
+            "path": "assets/images/Ellie Rose/Architecture_Connected_Curves.jpg",
+            "title": "Courbes"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Architecture_Cross_Bar.jpg",
+            "title": "Cross Bar"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Architecture_Horseshoe.jpg",
+            "title": "Sabot"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Architecture_Water_On_Modern.jpg",
+            "title": "Moderne"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Architecture_White_Light.jpg",
+            "title": "Lignes blanches"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Sport_Jump.jpg",
+            "title": "Saut"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Sport_Next_Hold.jpg",
+            "title": "Prochaine prise"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Sport_Race_End.jpg",
+            "title": "Arrivée"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Sport_Sky_Cross.jpg",
+            "title": "Croix au ciel"
+        },
+        {
+            "path": "assets/images/Ellie Rose/Sport_Tricks_in_the_air.mp4",
+            "title": "Dans les airs"
+        },
+        {
+            "path": "assets/images/Ellie Rose/sport_water_tunnel.jpg",
+            "title": "Tunnel aquatique"
+        }
+    ],
+    "Marcel": [
+        {
+            "path": "assets/images/Marcel/Architecture_Corner_Room.jpg",
+            "title": "Salle au coin"
+        },
+        {
+            "path": "assets/images/Marcel/Architecture_coverr_circle_empty_highway_in_buenos_aires.mp4",
+            "title": "Hauteur de Buenos Aires"
+        },
+        {
+            "path": "assets/images/Marcel/Architecture_Dome.jpg",
+            "title": "Dome"
+        },
+        {
+            "path": "assets/images/Marcel/Architecture_On_a_hill.jpg",
+            "title": "Mont"
+        },
+        {
+            "path": "assets/images/Marcel/Architecure_Contrast.jpg",
+            "title": "Contraste"
+        },
+        {
+            "path": "assets/images/Marcel/Travel_Adventure_Door.jpg",
+            "title": "Porte"
+        },
+        {
+            "path": "assets/images/Marcel/Travel_Bike_and_Stair.jpg",
+            "title": "Vélo sur marches"
+        },
+        {
+            "path": "assets/images/Marcel/Travel_OpenMountain.jpg",
+            "title": "Montagnes"
+        },
+        {
+            "path": "assets/images/Marcel/Travel_SunsetonCanals.jpg",
+            "title": "Lever de soleil"
+        },
+        {
+            "path": "assets/images/Marcel/Travel_Tower.jpg",
+            "title": "Tour"
+        }
+    ],
+    "Nabeel": [
+        {
+            "path": "assets/images/Nabeel/Portrait_AfternoonBreak.jpg",
+            "title": "Pause"
+        },
+        {
+            "path": "assets/images/Nabeel/Portrait_Alexandra.jpg",
+            "title": "Portrait d'Alexandra"
+        },
+        {
+            "path": "assets/images/Nabeel/Portrait_Shaw.jpg",
+            "title": "Portrait de Shaw"
+        },
+        {
+            "path": "assets/images/Nabeel/Portrait_Sunkissed.jpg",
+            "title": "Traces du soleil"
+        },
+        {
+            "path": "assets/images/Nabeel/Travel_Boat_Wanderer.jpg",
+            "title": "Bateau"
+        },
+        {
+            "path": "assets/images/Nabeel/Travel_Bridge_into_Forest.jpg",
+            "title": "Pont de la forêt"
+        },
+        {
+            "path": "assets/images/Nabeel/Travel_On_the_Road.jpg",
+            "title": "Sur la route"
+        },
+        {
+            "path": "assets/images/Nabeel/Travel_Outdoor_Baths.jpg",
+            "title": "Bains naturels"
+        },
+        {
+            "path": "assets/images/Nabeel/Travel_Road_into_Hill.jpg",
+            "title": "Route dans la vallée"
+        },
+        {
+            "path": "assets/images/Nabeel/Travel_Rock_Mountains.mp4",
+            "title": "Les Rocheuses"
+        }
+    ],
+    "Rhode": [
+        {
+            "path": "assets/images/Rhode/Animals_Majesty.jpg",
+            "title": "Sa Majesté"
+        },
+        {
+            "path": "assets/images/Rhode/Animals_Puppiness.mp4",
+            "title": "Chiot"
+        },
+        {
+            "path": "assets/images/Rhode/Event_Emcee.jpg",
+            "title": "Emcee"
+        },
+        {
+            "path": "assets/images/Rhode/Event_keyboardCheck.jpg",
+            "title": "Clavier"
+        },
+        {
+            "path": "assets/images/Rhode/Event_ProductPitch.jpg",
+            "title": "Pitch"
+        },
+        {
+            "path": "assets/images/Rhode/Event_VentureConference.jpg",
+            "title": "Conférence"
+        },
+        {
+            "path": "assets/images/Rhode/Fashion_Melody_Red_on_Stripes.jpg",
+            "title": "Mode au rouge"
+        },
+        {
+            "path": "assets/images/Rhode/Fashion_Wings.jpg",
+            "title": "Ailes à la mode"
+        },
+        {
+            "path": "assets/images/Rhode/Sport_2000_with_8.jpg",
+            "title": "Sport "
+        },
+        {
+            "path": "assets/images/Rhode/Sport_Butterfly.jpg",
+            "title": "Papillon"
+        }
+    ],
+    "Tracy": [
+        {
+            "path": "assets/images/Tracy/Art_Mine.jpg",
+            "title": "Mine"
+        },
+        {
+            "path": "assets/images/Tracy/Art_Purple_light.jpg",
+            "title": "Lumière violette"
+        },
+        {
+            "path": "assets/images/Tracy/Art_Triangle_Man",
+            "title": "Homme triangle"
+        },
+        {
+            "path": "assets/images/Tracy/Art_Wooden_Horse_Sculpture.mp4",
+            "title": "Cheval de bois "
+        },
+        {
+            "path": "assets/images/Tracy/Event_18thAnniversary.jpg",
+            "title": "Anniversaire"
+        },
+        {
+            "path": "assets/images/Tracy/Event_WeddingGazebo.jpg",
+            "title": "Mariage"
+        },
+        {
+            "path": "assets/images/Tracy/Fashion_Pattern_on_Pattern.jpg",
+            "title": "Mode"
+        },
+        {
+            "path": "assets/images/Tracy/Fashion_Urban_Jungle.jpg",
+            "title": "Jungle urbaine"
+        },
+        {
+            "path": "assets/images/Tracy/Fashion_Yellow_Beach.jpg",
+            "title": "Plage"
+        }
     ]
 }

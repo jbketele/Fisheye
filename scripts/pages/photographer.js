@@ -98,7 +98,7 @@ class MediaGallery {
         this.sortedMediaList.forEach((media) => {
             const { path, title } = media;
             const fileType = path.split('.').pop().toLowerCase();
-
+            console.log(media);
             const mediaContainer = document.createElement('div');
             mediaContainer.classList.add('media-container');
 
@@ -361,9 +361,9 @@ async function init() {
             const mediaResponse = await fetch("data/images-photographer.json");
             const mediaData = await mediaResponse.json();
 
-            const firstName = photographer.name.split(' ')[0];
+            const firstName = photographer.name.split(' ')[0].replace(/-/g, ' ');
             const mediaList = mediaData[firstName] || [];
-
+            console.log(firstName);
             const gallery = new MediaGallery(mediaList);
             gallery.display(document.querySelector('main'));
         } else {
