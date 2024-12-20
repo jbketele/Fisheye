@@ -22,7 +22,7 @@ class Photographer {
 
         photographInfo.innerHTML = `
             <h1>${this.name}</h1>
-            <p class="place">${this.city}, ${this.country}</p>
+            <h2 class="place">${this.city}, ${this.country}</h2>
             <p class="tagline">${this.tagline}</p>
         `;
 
@@ -138,7 +138,7 @@ class MediaGallery {
         mediaDetails.classList.add('title-box');
 
         // Ajout du titre
-        const mediaTitle = document.createElement('p');
+        const mediaTitle = document.createElement('h3');
         mediaTitle.textContent = title;
         mediaTitle.classList.add('media-title');
 

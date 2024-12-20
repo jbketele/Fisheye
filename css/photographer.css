@@ -22,6 +22,7 @@
 
 .photograph-header .place {
     font-size: 24px;
+    margin-top: 0;
 }
 
 .photograph-header .tagline {
@@ -62,7 +63,7 @@ main {
     border-radius: 5px;
 }
 
-.media-container p {
+.media-container h3 {
     margin: 0;
     color: #901C1C;
     font-size: 24px;
