@@ -3,5 +3,10 @@ import globals from "globals";
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [
-  {languageOptions: { globals: globals.browser }},
+  {
+    languageOptions: { globals: globals.browser },
+    rules: {
+      'no-console': 'warn',
+    },
+  },
 ];
