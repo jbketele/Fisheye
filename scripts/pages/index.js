@@ -1,3 +1,5 @@
+const fetch = require('node-fetch');
+
 async function getPhotographers() {
     try {
         const response = await fetch("data/photographers.json")
@@ -5,7 +7,7 @@ async function getPhotographers() {
             throw new Error("Erreur de récupération de données")
         }
         const data = await response.json();
-        photographers = data.photographers;
+        const photographers = data.photographers;
         console.log(photographers);
         // et bien retourner le tableau photographers seulement une fois récupéré
         return {
@@ -13,7 +15,7 @@ async function getPhotographers() {
         };
     } catch (error) {
         console.error("Erreur :", error);
-        return {
+        return {    
             photographers: []
         };
     }
