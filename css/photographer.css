@@ -171,8 +171,9 @@ form input {
     border-radius: 5px;
 }
 
-.message input {
+.message textarea {
     height: 170px;
+    width: 100%;
 }
 
 .sort-container {
