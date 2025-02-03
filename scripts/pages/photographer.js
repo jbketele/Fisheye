@@ -111,7 +111,7 @@ class MediaGallery {
                 mediaElement.alt = `Photo de ${title}`;
             } else if (fileType === 'mp4') {
                 mediaElement = document.createElement('video');
-                mediaElement.controls = true;
+                mediaElement.controls = false;
 
                 const source = document.createElement('source');
                 source.src = path;
@@ -340,6 +340,21 @@ document.addEventListener('DOMContentLoaded', () => {
     Lightbox.create();
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('contact_submit').addEventListener('click', function(event) {
+        event.preventDefault(); // Empêche l'envoi du formulaire
+
+        const firstName = document.getElementById('firstname').value;
+        const lastName = document.getElementById('lastname').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        console.log('Prénom:', firstName);
+        console.log('Nom:', lastName);
+        console.log('Email:', email);
+        console.log('Message:', message);
+    });
+});
 
 // Fonction principale d'initialisation
 async function init() {
