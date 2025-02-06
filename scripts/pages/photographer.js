@@ -370,4 +370,23 @@ async function init() {
 
         if (photographerData) {
             const photographer = new Photographer(photographerData);
-            photographer
+            photographer.displayInfo();
+            photographer.bindContactButton();
+
+            const mediaResponse = await fetch("data/images-photographer.json");
+            const mediaData = await mediaResponse.json();
+
+            const firstName = photographer.name.split(' ')[0].replace(/-/g, ' ');
+            const mediaList = mediaData[firstName] || [];
+            console.log(firstName);
+            const gallery = new MediaGallery(mediaList);
+            gallery.display(document.querySelector('main'));
+        } else {
+            console.error("Photographe non trouvé.");
+        }
+    } catch (error) {
+        console.error("Erreur :", error);
+    }
+}
+
+init();
